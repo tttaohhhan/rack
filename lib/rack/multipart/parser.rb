@@ -208,6 +208,12 @@ module Rack
                 k,v = param.split('=', 2)
                 k.strip!
                 v.strip!
+
++                # NOTE: Unity sends the below encoding string when sending binary
++                # data. This forces the encoding to a UTF-8 that Rack can handle.
++                v = Encoding::UTF_8 if v == '"utf-8"'
+
+                
                 encoding = Encoding.find v if k == CHARSET
               end
             end
