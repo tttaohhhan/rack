@@ -198,26 +198,26 @@ module Rack
 
           encoding = Encoding::UTF_8
 
-          if content_type
-            list         = content_type.split(';')
-            type_subtype = list.first
-            type_subtype.strip!
-            if TEXT_PLAIN == type_subtype
-              rest         = list.drop 1
-              rest.each do |param|
-                k,v = param.split('=', 2)
-                k.strip!
-                v.strip!
+#           if content_type
+#             list         = content_type.split(';')
+#             type_subtype = list.first
+#             type_subtype.strip!
+#             if TEXT_PLAIN == type_subtype
+#               rest         = list.drop 1
+#               rest.each do |param|
+#                 k,v = param.split('=', 2)
+#                 k.strip!
+#                 v.strip!
 
-+                # NOTE: Unity sends the below encoding string when sending binary
-+                # data. This forces the encoding to a UTF-8 that Rack can handle.
+# +                # NOTE: Unity sends the below encoding string when sending binary
+# +                # data. This forces the encoding to a UTF-8 that Rack can handle.
 # +                v = Encoding::UTF_8 if v == '"utf-8"'
 
                 
 #                 encoding = Encoding.find v if k == CHARSET
-              end
-            end
-          end
+#               end
+#             end
+#           end
 
           name.force_encoding encoding
           body.force_encoding encoding
